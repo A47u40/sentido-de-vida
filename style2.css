@@ -1,0 +1,941 @@
+:root {
+    --primary-color: #f8c8dc;
+    --primary-light: #ffd9e6;
+    --primary-dark: #e6a6be;
+    --white: #ffffff;
+    --gray-light: #f7f7f7;
+    --text-dark: #333333;
+    --text-medium: #666666;
+    --text-light: #888888;
+    --border-color: #e0e0e0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--gray-light);
+    color: var(--text-dark);
+}
+
+/* Header principal */
+.header {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    color: var(--primary-dark);
+    margin: 0 0 10px;
+}
+
+.header p {
+    font-size: 1.1em;
+    color: var(--text-medium);
+    margin: 0;
+}
+
+/* Contenedor de tarjetas */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 20px 60px;
+}
+
+.psychologist-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 350px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.psychologist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.card-photo-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card-photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cambiado de 'contain' a 'cover' para que las fotos llenen el círculo */
+}
+
+.card-name {
+    font-size: 1.5em;
+    margin: 0;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.card-career {
+    font-size: 1em;
+    color: var(--text-medium);
+    margin: 5px 0 15px;
+}
+
+.card-description {
+    font-size: 0.9em;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    min-height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ... (Mantén el CSS de las tarjetas, encabezados, etc. sin cambios) ... */
+
+.card-specialties-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block; /* Cambiado de 'flex' a 'block' */
+}
+
+.card-specialties-list li {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 500;
+    margin-bottom: 8px; /* Espacio entre cada elemento de la lista */
+    display: inline-block; /* Esto permite que cada elemento ocupe su propio espacio */
+}
+
+/* Estilos para el Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 35px;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+}
+
+/* ... (Mantener todo el CSS anterior) ... */
+
+/* Estilos para el Modal - CORREGIDO Y UNIFICADO */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, var(--primary-light), var(--white) 80%);
+    padding: 35px;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+    z-index: 1100; /* Asegurar que el botón esté encima de todo */
+}
+
+/* Modal Header */
+.modal-header {
+    text-align: center;
+    margin-bottom: 25px;
+    background-color: var(--primary-light);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.modal-photo-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background-color: var(--white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-name {
+    font-size: 2em;
+    color: var(--primary-dark);
+    margin: 10px 0 5px;
+    font-weight: 600;
+}
+
+.modal-career {
+    font-size: 1.1em;
+    color: var(--text-medium);
+    margin: 0;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 20px 0;
+    text-align: left;
+}
+
+.modal-section {
+    margin-bottom: 25px;
+}
+
+.modal-section-title {
+    font-size: 1.3em;
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-section-title i {
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+
+.modal-section-content {
+    font-size: 0.95em;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Nuevo estilo para Formación Académica y otros listados */
+.modal-list-item {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.modal-list-item h3 {
+    margin: 0 0 5px;
+    color: var(--primary-dark);
+    font-size: 1.1em;
+}
+
+.modal-list-item p {
+    margin: 0;
+    color: var(--text-medium);
+    font-size: 0.9em;
+}
+
+/* ... (Mantén el CSS del modal, el header, y otras secciones sin cambios) ... */
+
+.modal-specialties-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block; /* Cambiado de 'grid' a 'block' */
+}
+
+.modal-specialties-grid li {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: left; /* Alineado a la izquierda para mejor lectura */
+    transition: transform 0.2s;
+    cursor: pointer;
+    margin-bottom: 10px; /* Espacio entre cada especialidad */
+}
+
+.modal-specialties-grid li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.modal-contact-item i {
+    color: var(--primary-dark);
+    font-size: 1.2em;
+}
+
+/* Botones de acción del modal */
+.call-to-action {
+    text-align: center;
+    margin-top: 30px;
+    background-color: var(--primary-light);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.call-to-action p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+}
+
+.btn.primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn.secondary {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+.btn.secondary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividad para el modal */
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-name {
+        font-size: 1.5em;
+    }
+    .modal-career {
+        font-size: 1em;
+    }
+    .modal-actions {
+        flex-direction: column;
+    }
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Estilos para el panel de administración */
+.admin-panel {
+    background: var(--white);
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.admin-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--primary-light);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-panel-header h1 {
+    font-size: 2em;
+    margin: 0;
+    color: var(--primary-dark);
+}
+
+.admin-panel-header a {
+    text-decoration: none;
+    color: var(--text-medium);
+}
+
+.admin-section-title {
+    font-size: 1.5em;
+    color: var(--primary-dark);
+    margin-top: 0;
+    border-bottom: 1px dashed var(--primary-light);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1em;
+    color: var(--text-dark);
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .admin-panel {
+        padding: 20px;
+    }
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-specialties-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ... [MANTENER EL CÓDIGO CSS ANTERIOR] ... */
+
+/* Estilos específicos para la imagen en el modal */
+.modal-photo-wrapper {
+    width: 120px; /* Tamaño fijo para la foto del modal */
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ... [MANTENER EL CÓDIGO CSS ANTERIOR] ... */
+
+/* Nuevo: Estilos para la lista de terapeutas en el panel de administración */
+.therapist-list {
+    margin-top: 40px;
+}
+
+.therapist-list-item {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.therapist-info {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Estilo para el contenedor circular de la foto */
+.therapist-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden; /* Esto asegura que la imagen se recorte para que sea circular */
+    margin: 0 auto 15px auto; /* Centra el círculo y añade un margen inferior */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para la imagen dentro del contenedor */
+.therapist-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto hace que la imagen cubra todo el espacio sin distorsionarse */
+}
+
+.therapist-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center; /* Esto centra todo el texto dentro de la tarjeta */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.therapist-details h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--primary-dark);
+}
+
+.therapist-details p {
+    margin: 5px 0 15px 0;
+    font-size: 1em;
+    color: var(--text-color-light);
+}
+
+.therapist-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.therapist-actions a,
+.therapist-actions button {
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    border: none;
+}
+
+.btn-edit:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-delete {
+    background-color: #ffcccc;
+    color: #cc0000;
+    border: none;
+}
+
+.btn-delete:hover {
+    background-color: #cc0000;
+    color: var(--white);
+}
+/* -------------------- Appointments Section -------------------- */
+.appointments-section {
+  padding: 5rem 0;
+  background-color: var(--primary-light);
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.form-control, .btn {
+    border-radius: 10px;
+    padding: 12px 15px;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+/* -------------------- Admin Appointments List -------------------- */
+.appointment-list-item {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.appointment-info {
+    flex-grow: 1;
+}
+
+.appointment-info strong {
+    color: var(--primary-dark);
+}
+
+/* --- Appointments Section --- */
+.appointments-section {
+    padding: 5rem 0;
+    background-color: var(--primary-light);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.appointment-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 3rem;
+    transition: transform 0.3s ease;
+}
+
+.appointment-card:hover {
+    transform: translateY(-5px);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(248, 200, 220, 0.25);
+    outline: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-dark);
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 12px 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+/* --- Admin Appointments List --- */
+.appointment-list-item {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--primary-color);
+    animation: slideInLeft 0.5s ease-in-out;
+}
+
+.appointment-info {
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.appointment-info strong {
+    color: var(--primary-dark);
+}
+
+.appointment-actions .btn {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* --- Admin Panel General Styles --- */
+.admin-panel {
+    background-color: var(--background-color);
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.admin-panel-header h1 {
+    margin: 0;
+    color: var(--primary-dark);
+}
+
+.admin-panel-header a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* --- Admin Form Styles --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+/* --- Admin Appointment List Styles --- */
+.appointment-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.appointment-list-item {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid var(--primary-color);
+}
+
+.appointment-info {
+    flex-grow: 1;
+}
+
+.appointment-info strong {
+    color: var(--primary-dark);
+}
+
+.appointment-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-delete {
+    background-color: #e57373;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #d32f2f;
+}

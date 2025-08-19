@@ -1,0 +1,301 @@
+:root {
+      --primary-color: #f8c8dc;
+      --primary-light: #ffd9e6;
+      --primary-dark: #e6a6be;
+      --white: #ffffff;
+      --gray-light: #f7f7f7;
+      --text-dark: #333333;
+      --whatsapp-green: #25D366;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      color: var(--text-dark);
+    }
+    
+    .btn-primary:hover, .btn-primary:focus {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      color: var(--text-dark);
+    }
+    
+    /* Banner/Slider */
+    .banner-section {
+      position: relative;
+      height: 70vh;
+      min-height: 500px;
+      overflow: hidden;
+    }
+    
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+      text-align: center;
+      padding: 0 20px;
+    }
+    
+    .swiper-slide::before, .swiper-slide::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background-image: url('https://cdn.pixabay.com/photo/2018/03/31/06/27/butterfly-3277245_1280.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.3;
+    }
+    
+    .swiper-slide::before {
+      top: 20px;
+      left: 20px;
+      transform: rotate(-15deg);
+    }
+    
+    .swiper-slide::after {
+      bottom: 20px;
+      right: 20px;
+      transform: rotate(15deg);
+    }
+    
+    .slide-content {
+      max-width: 800px;
+      z-index: 2;
+    }
+    
+    .slide-content h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+    
+    .slide-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* About Section */
+    .about-section {
+      padding: 5rem 0;
+      background-color: var(--gray-light);
+    }
+    
+    .about-card {
+      background-color: var(--white);
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      padding: 2.5rem;
+      height: 100%;
+    }
+    
+    .about-card h3 {
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+    }
+    
+    .section-heading {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+    }
+    
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary-color);
+    }
+    
+    /* Therapists Section */
+    .therapists-section {
+      padding: 5rem 0;
+      background-color: var(--white);
+    }
+    
+    .therapist-card {
+      background-color: var(--white);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      height: 100%;
+    }
+    
+    .therapist-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary-color);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .therapist-img-container {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      padding: 5px;
+      border: 2px solid var(--primary-light);
+      transition: all 0.3s ease;
+    }
+    
+    .therapist-card:hover .therapist-img-container {
+      border-color: var(--primary-dark);
+      border-width: 3px;
+    }
+    
+    .therapist-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    
+    .therapist-name {
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+    
+    .therapist-specialty {
+      color: var(--primary-dark);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    
+    /* WhatsApp Button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--whatsapp-green);
+      font-size: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .whatsapp-btn:hover {
+      background-color: var(--primary-light);
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-light);
+      padding: 2rem 0;
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      background-image: url('https://cdn.pixabay.com/photo/2018/03/31/06/27/butterfly-3277245_1280.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.2;
+    }
+    
+    /* Logo */
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .slide-content h2 {
+        font-size: 2.5rem;
+      }
+      
+      .therapist-img-container {
+        width: 130px;
+        height: 130px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .banner-section {
+        height: 60vh;
+        min-height: 400px;
+      }
+      
+      .slide-content h2 {
+        font-size: 2rem;
+      }
+      
+      .slide-content p {
+        font-size: 1rem;
+      }
+      
+      .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .banner-section {
+        height: 50vh;
+        min-height: 350px;
+      }
+      
+      .slide-content h2 {
+        font-size: 1.8rem;
+      }
+      
+      .about-card, .therapist-card {
+        padding: 1.5rem;
+      }
+      
+      .therapist-img-container {
+        width: 110px;
+        height: 110px;
+      }
+    }
+
+    
